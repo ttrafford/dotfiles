@@ -1,3 +1,3 @@
 https://www.chezmoi.io/
 
-`sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME`
+`curl -sLS get.chezmoi.io | sh -s -- init -b ~/.local/bin --apply $GITHUB_USERNAME`
