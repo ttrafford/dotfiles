@@ -1,0 +1,8 @@
+conda="${HOME}/.conda/bin/conda"
+
+if command -v "${conda}" &> /dev/null
+then
+    eval "$("${conda}" shell.bash hook)"
+fi
+
+unset conda

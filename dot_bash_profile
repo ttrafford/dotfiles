@@ -1,0 +1,10 @@
+#
+# ~/.bash_profile
+#
+
+[[ -f "${HOME}/.bashrc" ]] && . "${HOME}/.bashrc"
+
+PATH="${HOME}/.local/bin:${HOME}/bin:${PATH}"
+EDITOR="/usr/bin/vim"
+
+export PATH EDITOR

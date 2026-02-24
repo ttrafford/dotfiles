@@ -1,0 +1,10 @@
+if command -v starship &> /dev/null
+then
+    eval "$(starship init bash)"
+
+    set_win_title() {
+        printf "\033]0;%s@%s: %s\007" "${USER}" "${HOSTNAME}" "${PWD}"
+    }
+
+    starship_precmd_user_func="set_win_title"
+fi
