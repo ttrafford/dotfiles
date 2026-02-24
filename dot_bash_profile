@@ -5,6 +5,6 @@
 [[ -f "${HOME}/.bashrc" ]] && . "${HOME}/.bashrc"
 
 PATH="${HOME}/.local/bin:${HOME}/bin:${PATH}"
-EDITOR="/usr/bin/vim"
+EDITOR="vim"
 
 export PATH EDITOR
