@@ -1,0 +1,10 @@
+if v:version < 800 && exists("*pathogen#infect")
+    call pathogen#infect("pack/dist/start/{}")
+endif
+
+let g:airline_theme = "simple"
+let g:airline_powerline_fonts = 1
+
+set mouse-=a
+set number
+set noautoindent
