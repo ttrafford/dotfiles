@@ -1,0 +1,38 @@
+init-vimext() {
+    local repo repos
+    local vim="${HOME}/.vim"
+    local vimext="${vim}/pack/dist/start"
+
+    mkdir -p "${vim}/autoload"
+    curl -LSso "${vim}/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
+
+    mkdir -p "${vimext}"
+    cd "${vimext}" || return 1
+
+    repos=((
+        "tpope/vim-sensible"
+    ))
+
+    for repo in "${repos[*]}"; do
+        if [ ! -d "$(basename "${repo}")" ]; then
+            git clone "https://github.com/${repo}"
+        fi
+    done
+}
+
+update-vimext() {
+    local d
+    local vim="${HOME}/.vim"
+    local vimext="${vim}/pack/dist/start"
+
+    mkdir -p "${vim}/autoload"
+    curl -LSso "${vim}/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
+
+    for d in $(find "${vim}" -type d -name .git); do
+        pushd "${d}/.." > /dev/null
+        echo -e "\n$(pwd) =>"
+        git pull
+        git gc --quiet > /dev/null
+        popd > /dev/null
+    done
+}
