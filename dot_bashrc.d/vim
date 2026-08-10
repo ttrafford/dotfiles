@@ -1,23 +1,27 @@
 init-vimext() {
-    local repo repos
+    local repo
     local vim="${HOME}/.vim"
     local vimext="${vim}/pack/dist/start"
+
+    local extensions=(
+        "tpope/vim-sensible"
+        "vim-airline/vim-airline"
+        "vim-airline/vim-airline-themes"
+    )
 
     mkdir -p "${vim}/autoload"
     curl -LSso "${vim}/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
 
     mkdir -p "${vimext}"
-    cd "${vimext}" || return 1
+    pushd "${vimext}" > /dev/null || return 1
 
-    repos=((
-        "tpope/vim-sensible"
-    ))
-
-    for repo in "${repos[*]}"; do
+    for repo in "${extensions[@]}"; do
         if [ ! -d "$(basename "${repo}")" ]; then
             git clone "https://github.com/${repo}"
         fi
     done
+
+    popd > /dev/null || return 1
 }
 
 update-vimext() {
